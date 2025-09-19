@@ -104,7 +104,7 @@
     "dev": "nodemon server.js",
     "migrate": "node scripts/migrate.js",
     "migrate:full": "node scripts/fullMigration30.js",
-    "build": "cd ../frontend && npm install && npm run build",
+    "build": "cd ../frontend && npm ci && npm run build",
     "heroku-postbuild": "npm run build"
   },
   "keywords": [],
