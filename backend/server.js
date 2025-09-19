@@ -21,7 +21,7 @@ const app = express();
 const corsOptions = {
   origin: [
     process.env.FRONTEND_URL || 'http://localhost:3000',
-    'https://woodsandwild.onrender.com', // Your frontend URL on Render
+    'https://wildr.onrender.com', // Your frontend URL on Render
     'http://localhost:3000' // For local development
   ],
   credentials: true,
