@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
+const path = require('path');
 const { connectToDatabase } = require('./config/db');
 const passport = require('passport');
 require('./config/passport');
@@ -17,13 +18,11 @@ dotenv.config();
 
 const app = express();
 
-// CORS configuration for production and development
+// CORS configuration for single URL deployment
 const corsOptions = {
-  origin: [
-    process.env.FRONTEND_URL || 'http://localhost:3000',
-    'https://wildr.onrender.com', // Your frontend URL on Render
-    'http://localhost:3000' // For local development
-  ],
+  origin: process.env.NODE_ENV === 'production' 
+    ? true // Same origin in production
+    : 'http://localhost:3000', // Local development
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -42,6 +41,17 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/reviews', reviewRoutes);
 
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
+
+// Serve static files from React build
+if (process.env.NODE_ENV === 'production') {
+  // Serve static files from the React app build directory
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  
+  // Handle React routing, return all requests to React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
