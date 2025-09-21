@@ -78,6 +78,26 @@ const CampsitesPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    
+    // If user searches for a specific campsite, navigate directly to it
+    if (term && term.trim()) {
+      const searchTerm = term.toLowerCase().trim();
+      const exactMatch = campsitesData.find(c => 
+        c.name.toLowerCase() === searchTerm
+      );
+      const partialMatch = campsitesData.find(c => 
+        c.name.toLowerCase().includes(searchTerm) || 
+        (c.location || '').toLowerCase().includes(searchTerm)
+      );
+      
+      const targetCampsite = exactMatch || partialMatch;
+      
+      if (targetCampsite) {
+        navigate(`/campsite/${targetCampsite._id || targetCampsite.id}`);
+        return;
+      }
+    }
+    
     const next = term ? `/campsites?search=${encodeURIComponent(term)}` : '/campsites';
     navigate(next, { replace: false });
   };
@@ -189,6 +209,41 @@ const CampsitesPage = () => {
               </svg>
               <h5>No campsites match your search</h5>
               <p>Try adjusting your search terms or filters to find more results.</p>
+              {term && (
+                <div>
+                  <p className="text-muted">
+                    Searched for: "<strong>{term}</strong>"
+                  </p>
+                  {(() => {
+                    const suggestions = campsitesData
+                      .filter(c => 
+                        c.name.toLowerCase().includes(term.toLowerCase().substring(0, 3)) ||
+                        (c.location || '').toLowerCase().includes(term.toLowerCase().substring(0, 3))
+                      )
+                      .slice(0, 3);
+                    
+                    if (suggestions.length > 0) {
+                      return (
+                        <div className="mt-3">
+                          <p className="mb-2"><strong>Did you mean:</strong></p>
+                          {suggestions.map(campsite => (
+                            <Button
+                              key={campsite._id || campsite.id}
+                              variant="outline-success"
+                              size="sm"
+                              className="me-2 mb-2"
+                              onClick={() => navigate(`/campsite/${campsite._id || campsite.id}`)}
+                            >
+                              {campsite.name}
+                            </Button>
+                          ))}
+                        </div>
+                      );
+                    }
+                    return null;
+                  })()}
+                </div>
+              )}
               <Button 
                 className="clear-filters-btn"
                 onClick={() => { 
