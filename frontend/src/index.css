@@ -1,0 +1,113 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  background-color: #f0f0f0; /* Light grey background */
+  margin: 0;
+  padding-top: 70px; /* Add padding for fixed navbar */
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  body, html {
+    overflow-y: auto; /* Ensure vertical scrolling is allowed */
+  }
+  
+}
+
+/* Ensure main content has proper spacing */
+.main-content {
+  min-height: calc(100vh - 70px);
+  padding: 20px 0;
+}
+
+/* Code Styling */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Navbar Styling */
+header {
+  width: 100%;
+  padding: 1.5em 3em;
+  background: transparent;
+  position: fixed; /* Changed from absolute to fixed */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+.navbar {
+  background: rgba(255, 255, 255, 0.8); /* White background with translucency */
+  backdrop-filter: blur(10px); /* Optional: Adds a blur effect */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Logo Styles */
+.navbar .logo a {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #333; /* Updated to match the navbar text color */
+  text-decoration: none;
+  font-family: 'Helvetica', sans-serif;
+}
+
+.navbar .logo a:hover {
+  color: #fff;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333; /* Updated to match the navbar text color */
+  font-size: 1em;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.nav-links a.host-link {
+  background-color: white;
+  color: black;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Icons Styling */
+.nav-links .user-icon i,
+.nav-links .menu-icon i {
+  font-size: 1.5em;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+}
+
+.nav-links .user-icon i:hover,
+.nav-links .menu-icon i:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Additional Styling (if needed) */
+/* Add any other global styles or overrides below */

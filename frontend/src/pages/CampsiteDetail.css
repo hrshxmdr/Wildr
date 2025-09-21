@@ -1,0 +1,489 @@
+/* ==========================================================================
+   CampsiteDetail Page Stylesheet (Modernized Version)
+   ========================================================================== */
+
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+   /* -------------------------------------------------------------------------- */
+   /* Variables & Global Styles                                                  */
+   /* -------------------------------------------------------------------------- */
+   
+   :root {
+     /* New Nature-Inspired Color Palette */
+     --primary-color: #73b45b;   /* Sage Green */
+     --secondary-color: #2bb0e1; /* Warm Terracotta */
+     --accent-color: #E7E8D1;    /* Light Beige */
+     --white-color: #ffffff;
+     --light-bg: #F9F7F3;      /* Earthy Off-White */
+     --text-dark: #9a5b5b;
+     --text-muted: #757575;
+     --border-color: #e0e0e0;
+     --success-color: #5A7D7C;
+     
+     /* Modern Sizing & Effects */
+     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+     --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.06);
+     --shadow-lg: 0 15px 30px rgba(90, 125, 124, 0.15);
+     --border-radius: 20px;
+     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+   }
+   
+   /* -------------------------------------------------------------------------- */
+   /* Page Layout                                                                */
+   /* -------------------------------------------------------------------------- */
+   
+   .campsite-detail-page {
+     min-height: 100vh;
+     background: var(--light-bg);
+     font-family: 'Poppins', sans-serif;
+     color: var(--text-dark);
+     padding: 3rem 0;
+   }
+   
+   .campsite-detail-container {
+     max-width: 1400px;
+     margin: 0 auto;
+   }
+   
+   .card {
+     border: none !important;
+     border-radius: var(--border-radius) !important;
+     box-shadow: var(--shadow-md) !important;
+     margin-bottom: 2.5rem;
+     background-color: var(--white-color) !important;
+     transition: var(--transition);
+   }
+   
+   .card:hover {
+     box-shadow: var(--shadow-lg);
+     transform: translateY(-5px);
+   }
+   
+   /* -------------------------------------------------------------------------- */
+   /* Image Gallery & Carousel                                                   */
+   /* -------------------------------------------------------------------------- */
+   
+   .campsite-gallery-card {
+     overflow: hidden;
+   }
+   
+   /* Override react-responsive-carousel styles */
+   .carousel-root {
+     height: 100%;
+   }
+   .carousel .slide {
+     background: var(--light-bg);
+     height: 100%;
+   }
+   .carousel .carousel-status {
+     display: none;
+   }
+   .carousel .control-arrow {
+     background: rgba(255, 255, 255, 0.8) !important;
+     color: var(--primary-color) !important;
+     height: 40px;
+     width: 40px;
+     top: 50% !important;
+     transform: translateY(-50%);
+     border-radius: 50%;
+     box-shadow: var(--shadow-sm);
+   }
+   .carousel .control-arrow:hover {
+     background: var(--white-color) !important;
+   }
+   .carousel .control-prev.control-arrow { left: 15px; }
+   .carousel .control-next.control-arrow { right: 15px; }
+   
+   .carousel .thumb {
+     border: 3px solid transparent !important;
+     border-radius: 10px;
+     transition: var(--transition);
+   }
+   .carousel .thumb.selected, .carousel .thumb:hover {
+     border-color: var(--primary-color) !important;
+   }
+   
+   /* -------------------------------------------------------------------------- */
+   /* Campsite Information                                                       */
+   /* -------------------------------------------------------------------------- */
+   
+   .campsite-info-body {
+     padding: 2.5rem;
+   }
+   
+   .campsite-title {
+     color: var(--primary-color);
+     font-size: 2.5rem;
+     font-weight: 700;
+     margin-bottom: 1rem;
+   }
+   
+   .campsite-description {
+     font-size: 1.1rem;
+     line-height: 1.7;
+     color: var(--text-muted);
+     margin-bottom: 1.5rem;
+   }
+   
+   .campsite-tags {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 0.75rem;
+     margin-bottom: 1.5rem;
+   }
+   
+   .campsite-tag {
+     background: linear-gradient(135deg, var(--secondary-color), #1a8db8);
+     color: var(--white-color);
+     padding: 0.5rem 1rem;
+     border-radius: 50px;
+     font-size: 0.8rem;
+     font-weight: 600;
+     text-transform: uppercase;
+     letter-spacing: 0.5px;
+     display: inline-flex;
+     align-items: center;
+     gap: 0.5rem;
+     transition: var(--transition);
+     border: none;
+     box-shadow: 0 2px 8px rgba(43, 176, 225, 0.2);
+   }
+   
+   .campsite-tag:hover {
+     background: linear-gradient(135deg, var(--primary-color), #5a9c47);
+     color: var(--white-color);
+     transform: translateY(-2px);
+     box-shadow: 0 6px 16px rgba(115, 180, 91, 0.4);
+   }
+   
+   /* Amenity-specific styling with icons */
+   .campsite-tag:before {
+     font-size: 1rem;
+     font-weight: normal;
+   }
+   
+   .campsite-tag[data-amenity="restrooms"]:before,
+   .campsite-tag:contains("Restrooms"):before {
+     content: "🚻";
+   }
+   
+   .campsite-tag[data-amenity="showers"]:before,
+   .campsite-tag:contains("Showers"):before {
+     content: "🚿";
+   }
+   
+   .campsite-tag[data-amenity="wi-fi"]:before,
+   .campsite-tag:contains("Wi-Fi"):before {
+     content: "📶";
+   }
+   
+   .campsite-tag[data-amenity="parking"]:before,
+   .campsite-tag:contains("Parking"):before {
+     content: "🅿️";
+   }
+   
+   .campsite-tag[data-amenity="pet-friendly"]:before,
+   .campsite-tag:contains("Pet Friendly"):before {
+     content: "🐕";
+   }
+   
+   .campsite-tag[data-amenity="water"]:before,
+   .campsite-tag:contains("Water"):before {
+     content: "💧";
+   }
+   
+   .campsite-tag[data-amenity="fire-pit"]:before,
+   .campsite-tag:contains("Fire Pit"):before {
+     content: "🔥";
+   }
+   
+   .campsite-tag[data-amenity="bbq"]:before,
+   .campsite-tag:contains("BBQ"):before {
+     content: "🍖";
+   }
+   
+   .campsite-tag[data-amenity="hiking"]:before,
+   .campsite-tag:contains("Hiking"):before {
+     content: "🥾";
+   }
+   
+   .campsite-tag[data-amenity="electric-hookups"]:before,
+   .campsite-tag:contains("Electric Hookups"):before {
+     content: "⚡";
+   }
+   
+   .campsite-tag[data-amenity="dump-station"]:before,
+   .campsite-tag:contains("Dump Station"):before {
+     content: "🚛";
+   }
+   
+   .campsite-location {
+     color: var(--text-muted);
+     font-weight: 500;
+   }
+   .campsite-location strong {
+     color: var(--text-dark);
+   }
+   
+   /* -------------------------------------------------------------------------- */
+   /* Map & Reviews Section                                                      */
+   /* -------------------------------------------------------------------------- */
+   
+   .map-card-body, .reviews-card-body {
+     padding: 2rem;
+   }
+   
+   .map-title {
+     color: var(--primary-color);
+     font-size: 1.5rem;
+     font-weight: 600;
+     margin-bottom: 1.5rem;
+   }
+   
+   .leaflet-container {
+     border-radius: 12px;
+   }
+   
+   .reviews-debug-info {
+     background-color: var(--light-bg);
+     border-radius: 8px;
+     padding: 1rem;
+     margin-bottom: 1rem;
+     font-size: 0.8rem;
+     color: var(--text-muted);
+   }
+   
+   /* -------------------------------------------------------------------------- */
+   /* Sidebar Widgets                                                            */
+   /* -------------------------------------------------------------------------- */
+   
+   .sidebar-card {
+     position: sticky;
+     top: 2rem;
+   }
+   
+   .sidebar-card-body {
+     padding: 2rem;
+   }
+   
+   .sidebar-card-title {
+     color: var(--primary-color);
+     font-size: 1.4rem;
+     font-weight: 600;
+     margin-bottom: 1.5rem;
+     padding-bottom: 1rem;
+     border-bottom: 1px solid var(--border-color);
+   }
+   
+   /* Weather Widget */
+   .weather-temp {
+     font-size: 3rem;
+     font-weight: 700;
+     color: var(--primary-color);
+   }
+   .weather-description {
+     text-transform: capitalize;
+     font-weight: 500;
+     margin-bottom: 0.5rem;
+   }
+   .weather-details {
+     color: var(--text-muted);
+     font-size: 0.9rem;
+   }
+   
+   /* Booking Widget */
+   .date-range-picker {
+     border: none;
+   }
+   /* Override react-date-range styles */
+   .rdrCalendarWrapper {
+     background: none;
+     color: var(--text-dark);
+     font-size: 0.9rem;
+   }
+   .rdrDateDisplayWrapper, .rdrInputRanges {
+     display: none;
+   }
+   .rdrMonthAndYearWrapper {
+     padding: 1rem 0;
+   }
+   .rdrMonthName {
+     font-weight: 600;
+   }
+   .rdrDayNumber span {
+     color: var(--text-dark);
+   }
+   .rdrDay:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span, 
+   .rdrDay:not(.rdrDayPassive) .rdrStartEdge ~ .rdrDayNumber span, 
+   .rdrDay:not(.rdrDayPassive) .rdrEndEdge ~ .rdrDayNumber span {
+     color: var(--white-color);
+   }
+   .rdrDay {
+     transition: var(--transition);
+   }
+   .rdrDay:hover {
+     background-color: var(--accent-color);
+     border-radius: 50%;
+   }
+   .rdrDayToday .rdrDayNumber span:after {
+     background: var(--secondary-color);
+   }
+   .rdrSelected, .rdrInRange, .rdrStartEdge, .rdrEndEdge {
+     background-color: var(--primary-color);
+     border-radius: 50px;
+   }
+   
+   .booking-form-select {
+     border-radius: 12px;
+     padding: 0.75rem 1rem;
+     border: 1px solid var(--border-color);
+     transition: var(--transition);
+   }
+   .booking-form-select:focus {
+     border-color: var(--primary-color);
+     box-shadow: 0 0 0 3px rgba(90, 125, 124, 0.2);
+   }
+   
+   .booking-summary {
+     padding: 1rem 0;
+     margin-top: 1rem;
+     border-top: 1px solid var(--border-color);
+   }
+   
+   .booking-total {
+     font-size: 1.2rem;
+     font-weight: 700;
+   }
+   
+   .booking-btn {
+     width: 100%;
+     background: var(--secondary-color);
+     border: none;
+     color: var(--white-color);
+     padding: 1rem;
+     border-radius: 12px;
+     font-size: 1.1rem;
+     font-weight: 600;
+     transition: var(--transition);
+   }
+   
+   .booking-btn:hover:not(:disabled) {
+     transform: translateY(-3px);
+     box-shadow: 0 10px 20px rgba(43, 176, 225, 0.25);
+   }
+   
+   .back-to-search-btn {
+     background: transparent !important;
+     border: 2px solid var(--accent-color) !important;
+     color: var(--primary-color) !important;
+     padding: 0.5rem 1.5rem !important;
+     border-radius: 25px !important;
+     font-size: 0.9rem !important;
+     font-weight: 500 !important;
+     text-decoration: none !important;
+     transition: var(--transition) !important;
+     display: inline-flex !important;
+     align-items: center !important;
+     gap: 0.5rem !important;
+     position: relative !important;
+     overflow: hidden !important;
+   }
+   
+   .back-to-search-btn::before {
+     content: '←';
+     font-size: 1.1rem;
+     transition: var(--transition);
+   }
+   
+   .back-to-search-btn:hover {
+     background: var(--accent-color) !important;
+     border-color: var(--primary-color) !important;
+     color: var(--primary-color) !important;
+     transform: translateY(-2px) !important;
+     box-shadow: 0 5px 15px rgba(115, 180, 91, 0.2) !important;
+   }
+   
+   .back-to-search-btn:hover::before {
+     transform: translateX(-3px);
+   }
+   
+   .back-to-search-btn:active {
+     transform: translateY(0) !important;
+     box-shadow: 0 2px 5px rgba(115, 180, 91, 0.15) !important;
+   }
+   
+   /* -------------------------------------------------------------------------- */
+   /* Modals (Booking & Lightbox)                                                */
+   /* -------------------------------------------------------------------------- */
+   
+   .modal-content {
+     border-radius: var(--border-radius);
+     border: none;
+   }
+   .modal-header {
+     background: var(--primary-color);
+     color: var(--white-color);
+     border-bottom: none;
+   }
+   .modal-title {
+     font-weight: 600;
+   }
+   .btn-close {
+     filter: invert(1) grayscale(100%) brightness(200%);
+   }
+   .lightbox-modal .modal-body {
+     background: rgba(0,0,0,0.9);
+   }
+   .lightbox-image {
+     max-width: 100%;
+     max-height: 80vh;
+   }
+   
+   /* -------------------------------------------------------------------------- */
+   /* Responsive Design                                                          */
+   /* -------------------------------------------------------------------------- */
+   
+   @media (max-width: 992px) {
+     .campsite-detail-page { padding: 2rem 0; }
+     .campsite-title { font-size: 2rem; }
+     .card { margin-bottom: 2rem; }
+   }
+   
+   @media (max-width: 768px) {
+     .campsite-detail-page { padding: 1.5rem 0; }
+     .card:hover { transform: none; box-shadow: var(--shadow-md); }
+     .sidebar-card { position: static; }
+     .campsite-title { text-align: center; }
+     .campsite-info-body, .map-card-body, .reviews-card-body, .sidebar-card-body {
+       padding: 1.5rem;
+     }
+   }
+   
+   /* -------------------------------------------------------------------------- */
+   /* Animations                                                                 */
+   /* -------------------------------------------------------------------------- */
+   
+   @keyframes fadeIn {
+     from { opacity: 0; }
+     to { opacity: 1; }
+   }
+   
+   @keyframes slideUp {
+     from { opacity: 0; transform: translateY(20px); }
+     to { opacity: 1; transform: translateY(0); }
+   }
+   
+   .campsite-gallery-card,
+   .campsite-info-body,
+   .map-card,
+   .reviews-card,
+   .sidebar-card {
+     opacity: 0;
+     animation: slideUp 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+   }
+   
+   .campsite-gallery-card { animation-delay: 0.1s; }
+   .sidebar-card:nth-of-type(1) { animation-delay: 0.2s; }
+   .sidebar-card:nth-of-type(2) { animation-delay: 0.3s; }
+   .map-card { animation-delay: 0.4s; }
+   .reviews-card { animation-delay: 0.5s; }

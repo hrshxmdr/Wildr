@@ -1,0 +1,333 @@
+/* ==========================================================================
+   AddCampsitePage Stylesheet (Modern Version)
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------- */
+/* Variables & Page Setup                                                     */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  /* Nature-Inspired Color Palette */
+  --primary-color: #5A7D7C;   /* Sage Green */
+  --secondary-color: #B85042; /* Warm Terracotta */
+  --accent-color: #E7E8D1;    /* Light Beige */
+  --white-color: #ffffff;
+  --light-bg: #F9F7F3;      /* Earthy Off-White */
+  --text-dark: #333333;
+  --text-muted: #757575;
+  --border-color: #e0e0e0;
+  --error-color: #d9534f;
+  
+  /* Modern Sizing & Effects */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 15px 30px rgba(90, 125, 124, 0.15);
+  --border-radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.add-campsite-page {
+  background-color: var(--light-bg);
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Main Form Container                                                        */
+/* -------------------------------------------------------------------------- */
+
+.add-campsite-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--white-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  padding: 3rem;
+  animation: slideUp 0.7s ease-out;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 2rem;
+}
+
+.form-header h1 {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.form-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Form Sections & Groups                                                     */
+/* -------------------------------------------------------------------------- */
+
+.form-section {
+  margin-bottom: 2.5rem;
+}
+
+.form-section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-description {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Inputs, Textareas, and Dynamic Fields                                      */
+/* -------------------------------------------------------------------------- */
+
+input[type="text"],
+input[type="number"],
+input[type="url"],
+textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--light-bg);
+  font-size: 1rem;
+  color: var(--text-dark);
+  transition: var(--transition);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: var(--white-color);
+  box-shadow: 0 0 0 3px rgba(90, 125, 124, 0.15);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Error States */
+.error {
+  border-color: var(--error-color) !important;
+}
+.error-text {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* Array Inputs (Images, Facilities, Tags) */
+.array-input-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  align-items: center;
+}
+.array-input-group input {
+  flex-grow: 1;
+}
+
+.add-btn, .remove-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  transition: var(--transition);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.remove-btn {
+  color: var(--text-muted);
+  padding: 0.85rem;
+}
+.remove-btn:hover {
+  color: var(--error-color);
+  background-color: rgba(217, 83, 79, 0.1);
+}
+
+.add-btn {
+  color: var(--primary-color);
+  border: 1px dashed var(--border-color);
+  margin-top: 0.5rem;
+}
+.add-btn:hover {
+  background-color: var(--accent-color);
+  border-color: var(--primary-color);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Suggestion Chips                                                           */
+/* -------------------------------------------------------------------------- */
+
+.facility-suggestions {
+  margin-bottom: 1.5rem;
+}
+
+.facility-suggestions p {
+  font-weight: 500;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.suggestion-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.suggestion-chip {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.suggestion-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-color);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Alerts & Form Actions                                                      */
+/* -------------------------------------------------------------------------- */
+
+.alert {
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+.alert-success {
+  background-color: rgba(90, 125, 124, 0.1);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.alert-error {
+  background-color: rgba(217, 83, 79, 0.1);
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.btn-primary, .btn-secondary {
+  padding: 0.85rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: var(--light-bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--border-color);
+  color: var(--text-dark);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Animations & Responsive Design                                             */
+/* -------------------------------------------------------------------------- */
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .add-campsite-page { padding: 1.5rem 1rem; }
+  .add-campsite-container { padding: 1.5rem; }
+  .form-header h1 { font-size: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-actions { flex-direction: column-reverse; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+}
