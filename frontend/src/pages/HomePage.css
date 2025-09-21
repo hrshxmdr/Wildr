@@ -150,31 +150,36 @@ body {
   border-radius: var(--border-radius);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   padding: 1rem;
+  position: relative;
+  z-index: 10; /* keep card above background/overlays */
 }
 .search-input-group {
   position: relative;
   display: flex;
   align-items: center;
+  overflow: visible; /* allow dropdowns to escape */
 }
 .search-icon {
   position: absolute;
   left: 18px;
-  color: #aaa;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7d7d7d;
   z-index: 2;
 }
 .search-input-group .form-control,
 .search-input-group .form-select,
 .date-display {
-  padding-left: 50px;
+  padding-left: 48px;
   border-radius: 14px;
-  border: none;
-  height: 50px;
-  background-color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.08);
+  height: 56px;
+  background-color: rgba(255,255,255,0.95);
   transition: var(--transition-smooth);
 }
 .search-input-group .form-control:focus,
 .search-input-group .form-select:focus {
-    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.5);
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.25);
     background-color: #fff;
 }
 
@@ -188,40 +193,40 @@ body {
 
 .location-suggestions, .date-picker-container, .suggestions-dropdown {
     position: absolute;
-    top: 110%;
+    top: calc(100% + 8px);
     left: 0;
     width: 100%;
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    z-index: 1000;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+    z-index: 2000; /* above card and other elements */
     overflow: hidden;
-    animation: dropdown-fade-in 0.3s ease-out;
+    animation: dropdown-fade-in 0.2s ease-out;
 }
 .suggestions-dropdown {
     max-height: 320px;
     overflow-y: auto;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.06);
 }
 @keyframes dropdown-fade-in {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 .suggestion-item {
-    padding: 12px 20px;
+    padding: 12px 16px 12px 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 .suggestion-item:hover {
-    background-color: #f8f9fa;
+    background-color: #f4f8f7;
 }
 .suggestion-item + .suggestion-item {
     border-top: 1px solid #f1f3f5;
 }
 .suggestion-item.active {
-    background-color: #e9f7f4;
+    background-color: #e6f4f1;
 }
 .date-picker-container .rdrDefinedRangesWrapper {
     display: none; /* Hide presets if not needed */
@@ -239,7 +244,7 @@ body {
   box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
 }
 .search-button {
-    height: 50px;
+    height: 56px; /* match input height */
 }
 .search-button:hover, .view-button:hover, .cta-button:hover {
   transform: translateY(-3px);
