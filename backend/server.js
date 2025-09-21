@@ -42,17 +42,31 @@ app.use('/api/reviews', reviewRoutes);
 
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
-// Serve static files from React build
+// Serve static files from React build (only if build exists)
 if (process.env.NODE_ENV === 'production') {
-  // Serve static files from the React app build directory
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  const fs = require('fs');
+  const buildPath = path.join(__dirname, '../frontend/build');
   
-  // Handle React routing, return all requests to React app
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-  });
+  // Check if build directory exists
+  if (fs.existsSync(buildPath)) {
+    app.use(express.static(buildPath));
+    
+    // Handle React routing, return all requests to React app
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(buildPath, 'index.html'));
+    });
+  } else {
+    // Build doesn't exist - serve API only
+    app.get('/', (req, res) => {
+      res.json({ 
+        message: 'Woods & Wild API is running!', 
+        status: 'OK',
+        note: 'Frontend build not found - API only mode'
+      });
+    });
+  }
 } else {
-  // Development mode - just serve a simple message
+  // Development mode
   app.get('/', (req, res) => {
     res.json({ message: 'Woods & Wild API is running!', status: 'OK' });
   });
