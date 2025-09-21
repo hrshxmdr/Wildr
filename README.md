@@ -1,5 +1,6 @@
  # Wildr
-![Uploading image.png…]()
+<img src="Wildr\frontend\public\img\website.png" width="400" alt="Screenshot">
+
 
 
 A React + React-Bootstrap app for discovering and booking campsites.
