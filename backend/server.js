@@ -51,6 +51,11 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
   });
+} else {
+  // Development mode - just serve a simple message
+  app.get('/', (req, res) => {
+    res.json({ message: 'Woods & Wild API is running!', status: 'OK' });
+  });
 }
 
 const PORT = process.env.PORT || 5000;
