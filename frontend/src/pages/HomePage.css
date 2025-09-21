@@ -85,6 +85,19 @@ body {
     }
 }
 
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.feature-item:hover .feature-icon {
+    animation: pulse 2s infinite;
+}
+
 /* --- Hero Section --- */
 .hero-section {
   position: relative;
@@ -158,24 +171,28 @@ body {
   display: flex;
   align-items: center;
   overflow: visible; /* allow dropdowns to escape */
+  margin-bottom: 0.5rem;
 }
 .search-icon {
   position: absolute;
-  left: 18px;
+  left: 18px; /* Slightly more space from edge */
   top: 50%;
   transform: translateY(-50%);
-  color: #7d7d7d;
+  color: #6c757d;
   z-index: 2;
+  font-size: 0.9rem;
+  pointer-events: none; /* Prevent icon from interfering with clicks */
 }
 .search-input-group .form-control,
 .search-input-group .form-select,
 .date-display {
-  padding-left: 48px;
+  padding-left: 50px; /* Increased padding to ensure cursor starts after icon */
   border-radius: 14px;
   border: 1px solid rgba(0,0,0,0.08);
   height: 56px;
   background-color: rgba(255,255,255,0.95);
   transition: var(--transition-smooth);
+  text-indent: 2px; /* Additional space for cursor positioning */
 }
 .search-input-group .form-control:focus,
 .search-input-group .form-select:focus {
@@ -189,6 +206,17 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  padding-left: 50px !important; /* Match form control padding */
+  font-size: 0.95rem;
+  color: #495057;
+  text-indent: 2px; /* Consistent with form controls */
+}
+
+.date-display span {
+  margin-left: 2px; /* Extra spacing from icon */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .location-suggestions, .date-picker-container, .suggestions-dropdown {
@@ -229,7 +257,8 @@ body {
     background-color: #e6f4f1;
 }
 .date-picker-container .rdrDefinedRangesWrapper {
-    display: none; /* Hide presets if not needed */
+    display: none; 
+    /* Hide presets if not needed */
 }
 
 /* --- Buttons --- */
@@ -334,18 +363,68 @@ body {
 .feature-item {
   padding: 40px 30px;
   transition: var(--transition-smooth);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.feature-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(42, 157, 143, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+.feature-item:hover::before {
+  left: 100%;
 }
 .feature-item:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(42, 157, 143, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(42, 157, 143, 0.2);
 }
 .feature-icon {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 20px;
   color: var(--primary-color);
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+.feature-item:hover .feature-icon {
+  color: var(--secondary-color);
+  transform: scale(1.1) rotate(5deg);
+  text-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
 }
 .feature-title {
-    font-weight: 600;
-    margin-bottom: 10px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--dark-color);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+.feature-item:hover .feature-title {
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+.feature-text {
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  line-height: 1.6;
+}
+.feature-item:hover .feature-text {
+  color: var(--dark-color);
+  transform: translateY(-1px);
 }
 
 /* --- CTA Section --- */
@@ -406,6 +485,12 @@ body {
     .search-card .col-md-2:last-child {
         margin-bottom: 0;
     }
+    .search-input-group {
+        margin-bottom: 1rem;
+    }
+    .search-input-group:last-child {
+        margin-bottom: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -414,6 +499,29 @@ body {
     .home-page section { padding: 60px 0; }
     .search-card .row > * {
       width: 100%;
+      margin-bottom: 0.75rem;
+    }
+    .search-card .row > *:last-child {
+      margin-bottom: 0;
+    }
+    .search-input-group {
+        margin-bottom: 0.75rem;
+    }
+    .search-input-group:last-child {
+        margin-bottom: 0;
+    }
+    .search-card {
+        padding: 1.5rem 1rem;
+    }
+    .feature-item {
+        padding: 30px 20px;
+        margin-bottom: 1rem;
+    }
+    .feature-item:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+    .feature-icon {
+        font-size: 3rem;
     }
     .cta-section h2 {
       font-size: 2.2rem;

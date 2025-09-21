@@ -234,10 +234,10 @@ const HomePage = () => {
                             <Row className="align-items-center g-3">
                                 <Col md={4} className="position-relative" ref={locationInputRef}>
                                     <div className="search-input-group">
-                                        <FaMapMarkerAlt className="search-icon" />
+                                        <FaMapMarkerAlt className=" search-icon" />
                                         <Form.Control
                                             type="text"
-                                            placeholder="Where to?"
+                                            placeholder="    Where to?"
                                             value={searchLocation}
                                             onChange={handleLocationChange}
                                             onFocus={() => searchLocation.length > 0 && setShowLocationSuggestions(true)}
