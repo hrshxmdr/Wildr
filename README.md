@@ -1,5 +1,5 @@
  # Wildr
-<img src="Wildr\frontend\public\img\website.png" width="400" alt="Screenshot">
+<img src="frontend\public\img\website.png" width="400" alt="Screenshot">
 
 
 
