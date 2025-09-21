@@ -1,4 +1,6 @@
- # Woods & Wild
+ # Wildr
+![Uploading image.png…]()
+
 
 A React + React-Bootstrap app for discovering and booking campsites.
 
